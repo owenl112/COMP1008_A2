@@ -14,12 +14,14 @@ public class CTW extends Map{
     }
 
     public void setNumOfWool(int numOfWool) {
-        if(numOfWool >1 && numOfWool <= 16)
+        if(numOfWool >1 && numOfWool <= 16 && numOfWool % 2 == 0)
             this.numOfWool = numOfWool;
         else throw new IllegalArgumentException("Must be between 1 and 16 wools");
     }
 
     public int woolsPerTeam() {
-        return this.getNumOfWool() / this.getTeams();
+        if(this.getTeams() != 0)
+            return this.getNumOfWool() / this.getTeams();
+        else return 0;
     }
 }
