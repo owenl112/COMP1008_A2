@@ -8,6 +8,21 @@ public class DTM extends Map {
 
     }
 
+    /**
+     * Very similar to the destroy the core but with monument stuff. including size (number of blocks)
+     * @param name
+     * @param pool
+     * @param authorUUID
+     * @param maxPlayers
+     * @param rage
+     * @param blitz
+     * @param teams
+     * @param timer
+     * @param numOfMonuments
+     * @param monumentSize
+     * @param monumentObs
+     * @param monumentModes
+     */
     public DTM(String name, String pool, String authorUUID, int maxPlayers, boolean rage, boolean blitz, int teams, int timer, int numOfMonuments, int monumentSize, boolean monumentObs, boolean monumentModes) {
         super(name, pool, authorUUID, maxPlayers, rage, blitz, teams, timer);
         setNumOfMonuments(numOfMonuments);

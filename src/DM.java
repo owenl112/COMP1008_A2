@@ -5,6 +5,19 @@ public class DM extends Map {
 
     }
 
+    /**
+     * Same as the Map but with two booleans for if there are teams or not and if the spawns are random or fixed
+     * @param name
+     * @param pool
+     * @param authorUUID
+     * @param maxPlayers
+     * @param rage
+     * @param blitz
+     * @param teams
+     * @param timer
+     * @param free4All
+     * @param randomSpawns
+     */
     public DM(String name, String pool, String authorUUID, int maxPlayers, boolean rage, boolean blitz, int teams, int timer, boolean free4All, boolean randomSpawns) {
         super(name, pool, authorUUID, maxPlayers, rage, blitz, teams, timer);
         setFree4All(free4All);

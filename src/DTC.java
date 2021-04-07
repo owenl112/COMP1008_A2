@@ -7,6 +7,21 @@ public class DTC extends Map{
 
     }
 
+    /**
+     * Adds the number of cores, what they are made of, how much the inside needs to leak and if it has modes that change it
+     * @param name
+     * @param pool
+     * @param authorUUID
+     * @param maxPlayers
+     * @param rage
+     * @param blitz
+     * @param teams
+     * @param timer
+     * @param numOfCores
+     * @param coreMaterial
+     * @param leakDown
+     * @param coreModes
+     */
     public DTC(String name, String pool, String authorUUID, int maxPlayers, boolean rage, boolean blitz, int teams, int timer, int numOfCores, String coreMaterial, int leakDown, boolean coreModes) {
         super(name, pool, authorUUID, maxPlayers, rage, blitz, teams, timer);
         setNumOfCores(numOfCores);
@@ -19,8 +34,12 @@ public class DTC extends Map{
         return numOfCores;
     }
 
+    /**
+     * makes sure the number of cores makes sense. same as for capture the wool
+     * @param numOfCores
+     */
     public void setNumOfCores(int numOfCores) {
-        if(numOfCores >1 && numOfCores %2 == 0)
+        if(numOfCores >1 && numOfCores % this.getTeams() == 0)
             this.numOfCores = numOfCores;
         else throw new IllegalArgumentException("Must be an even amount of cores");
     }

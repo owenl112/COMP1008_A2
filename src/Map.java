@@ -1,19 +1,30 @@
 import java.util.ArrayList;
 
 public class Map {
-    private String name;
-    private String pool;
-    private String authorUUID;
-    private int maxPlayers;
-    private boolean rage;
-    private boolean blitz;
-    private int teams;
-    private int timer;
+    private String name; // name of the map
+    private String pool; // what pool it can be found in (more players -> bigger maps)
+    private String authorUUID; // who made it, use UUID if they change name
+    private int maxPlayers; // how many players total
+    private boolean rage; // is it rage (one shot kill)
+    private boolean blitz; // is it blitz (only live once)
+    private int teams; // how many teams
+    private int timer; // what is the timer?
 
     public Map() {
     }
 
 
+    /**
+     * Creates the map
+     * @param name
+     * @param pool
+     * @param authorUUID
+     * @param maxPlayers
+     * @param rage
+     * @param blitz
+     * @param teams
+     * @param timer
+     */
     public Map(String name, String pool, String authorUUID, int maxPlayers, boolean rage, boolean blitz, int teams, int timer) {
         setName(name);
         setPool(pool);
@@ -29,6 +40,10 @@ public class Map {
         return name;
     }
 
+    /**
+     * sets the name, makes sure it's at least 2 chars long
+     * @param name
+     */
     public void setName(String name) {
         if(name.length() >= 2){
         this.name = name;
@@ -40,6 +55,10 @@ public class Map {
         return pool;
     }
 
+    /**
+     * makes sure the pool is correct
+     * @param pool
+     */
     public void setPool(String pool) {
         pool.toLowerCase();
         String[] pools = {"pico","nano","micro","centi","hecto","mega","giga"};
@@ -57,6 +76,10 @@ public class Map {
         return authorUUID;
     }
 
+    /**
+     * Checks the UUID to make sure the author is correct.. might be better to make it an ArrayList of strings if there is multiple
+     * @param authorUUID
+     */
     public void setAuthorUUID(String authorUUID) {
         // seeing if the UUID is correct (8-4-4-12 characters)
         if(authorUUID.charAt(8) == '-' && authorUUID.charAt(13) == '-' && authorUUID.charAt(18) =='-' && authorUUID.charAt(23) == '-' ){
