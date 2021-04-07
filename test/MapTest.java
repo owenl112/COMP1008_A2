@@ -8,8 +8,8 @@ class MapTest {
     Map test2;
     @BeforeEach
     void setUp() {
-         test1 = new Map("Airship Battle", "mega","30e27366-0b14-4076-8f55-0819ece49ce3",100,false,false,true,-1);
-         test2 = new Map("Chinatown","micro","a37e4da3-1c6c-4dc9-b085-63783406a963",20,true,true,true,-1);
+         test1 = new Map("Airship Battle", "mega","30e27366-0b14-4076-8f55-0819ece49ce3",100,false,false,2,-1);
+         test2 = new Map("Chinatown","micro","a37e4da3-1c6c-4dc9-b085-63783406a963",20,true,true,0,-1);
 
     }
 
@@ -45,4 +45,5 @@ class MapTest {
         assertEquals(500,test1.getTimer());
         assertThrows(IllegalArgumentException.class,()-> test2.setTimer(-2));
     }
+
 }

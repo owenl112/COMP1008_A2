@@ -7,21 +7,21 @@ public class Map {
     private int maxPlayers;
     private boolean rage;
     private boolean blitz;
-    private boolean team;
+    private int teams;
     private int timer;
 
     public Map() {
     }
 
 
-    public Map(String name, String pool, String authorUUID, int maxPlayers, boolean rage, boolean blitz, boolean team, int timer) {
+    public Map(String name, String pool, String authorUUID, int maxPlayers, boolean rage, boolean blitz, int teams, int timer) {
         setName(name);
         setPool(pool);
         setAuthorUUID(authorUUID);
         setMaxPlayers(maxPlayers);
         setRage(rage);
         setBlitz(blitz);
-        setTeam(team);
+        setTeams(teams);
         setTimer(timer);
     }
 
@@ -92,12 +92,14 @@ public class Map {
         this.blitz = blitz;
     }
 
-    public boolean isTeam() {
-        return team;
+    public int getTeams() {
+        return teams;
     }
 
-    public void setTeam(boolean team) {
-        this.team = team;
+    public void setTeams(int teams) {
+        if(teams >=0 )
+            this.teams = teams;
+        else throw new IllegalArgumentException("There must be 0 teams or more");
     }
 
     public int getTimer() {
