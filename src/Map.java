@@ -15,14 +15,14 @@ public class Map {
 
 
     public Map(String name, String pool, String authorUUID, int maxPlayers, boolean rage, boolean blitz, boolean team, int timer) {
-        this.name = name;
-        this.pool = pool;
-        this.authorUUID = authorUUID;
-        this.maxPlayers = maxPlayers;
-        this.rage = rage;
-        this.blitz = blitz;
-        this.team = team;
-        this.timer = timer;
+        setName(name);
+        setPool(pool);
+        setAuthorUUID(authorUUID);
+        setMaxPlayers(maxPlayers);
+        setRage(rage);
+        setBlitz(blitz);
+        setTeam(team);
+        setTimer(timer);
     }
 
     public String getName() {
@@ -43,15 +43,14 @@ public class Map {
     public void setPool(String pool) {
         pool.toLowerCase();
         String[] pools = {"pico","nano","micro","centi","hecto","mega","giga"};
-        try {
-            for (int i = 0; i < pools.length; i++) {
-                if (pools[i].compareTo(pool) == 0) {
-                    this.pool = pool;
-                }
-            }
-        } catch (IllegalArgumentException e){
-            System.out.println("Pool must be either pico, nano, micro, centi, hecto, mega or giga");
+        int all = 0;
+        for (int i = 0; i < pools.length; i++) {
+            if (pool == pools[i])
+                this.pool = pool;
+            else all++;
         }
+        if(all == pools.length)
+            throw new IllegalArgumentException("Pool must be either pico, nano, micro, centi, hecto, mega or giga");
     }
 
     public String getAuthorUUID() {
@@ -105,9 +104,10 @@ public class Map {
         return timer;
     }
 
-    public void setTimeSize(int timer) {
-        if(timer >= 0)
+    public void setTimer(int timer) {
+        if(timer >= -1) {// -1 for no timer set by default
             this.timer = timer;
+        }
         else throw new IllegalArgumentException("Timer must be greater than 0");
     }
 }
