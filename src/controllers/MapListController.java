@@ -11,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.scene.control.ListView;
 import models.*;
-import utilities.DBUtility;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -34,6 +33,11 @@ public class MapListController implements Initializable {
         updateText();
     }
 
+    /**
+     * Code to create a new window for adding a map
+     * @param event
+     * @throws Exception
+     */
     @FXML
     public void addMap(ActionEvent event) throws Exception {
         Parent allMapsParent = FXMLLoader.load(getClass().getResource("../views/addMap.fxml"));
@@ -43,6 +47,9 @@ public class MapListController implements Initializable {
         window.show();
     }
 
+    /**
+     * Updates the text of map information when a new item is clicked
+     */
     public void updateText() {
         // create an Object for the selected Object
         Map currentMap;

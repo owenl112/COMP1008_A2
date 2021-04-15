@@ -22,7 +22,7 @@ public class AddMapController implements Initializable {
     private ChoiceBox mapPicker;
 
     @FXML
-    private TextField newName, newAuthor, newPool, optString;
+    private TextField newName, newAuthor, optString, newPool;
 
     @FXML
     private CheckBox newRage, newBlitz, showTeams, showTimer, optCheckBox1, optCheckBox2;
@@ -33,6 +33,11 @@ public class AddMapController implements Initializable {
     @FXML
     private Label optStringLabel, optCheckBox1Label, optCheckBox2Label, optSpinner1Label, optSpinner2Label, selectedLabel;
 
+    /**
+     * Set's up all the value factories and other small thins before going to mapSelected()
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         mapPicker.getItems().addAll("CTW","DM","DTC","DTM","KOTH");
@@ -41,49 +46,13 @@ public class AddMapController implements Initializable {
         newPlayerCap.setValueFactory(maxPlayerFactory);
         SpinnerValueFactory<Integer> teamFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(2,8,2);
         newTeams.setValueFactory(teamFactory);
-        SpinnerValueFactory<Integer> timeFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,7200,600);
+        SpinnerValueFactory<Integer> timeFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,7200,600, 50);
         newTimer.setValueFactory(timeFactory);
         SpinnerValueFactory<Integer> objectiveFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(2,16,4);
         optSpinner1.setValueFactory(objectiveFactory);
         newTeams.setVisible(false);
         newTimer.setVisible(false);
         mapSelected();
-    }
-
-    @FXML
-    public void addMap(ActionEvent event) throws Exception {
-        Parent mapListParent = FXMLLoader.load(getClass().getResource("../views/mapList.fxml"));
-        Scene mapListScene = new Scene(mapListParent);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setTitle("Map Creator");
-        window.setScene(mapListScene);
-        window.show();
-    }
-
-    /**
-     * saves the map
-     */
-    @FXML
-    void saveMap(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-
-        int teams = 0,timer = -1;
-        if(showTeams.isSelected())
-            teams = Integer.parseInt(newTeams.getValue().toString());
-        if(showTimer.isSelected())
-            timer = Integer.parseInt(newTimer.getValue().toString());
-        String selected = mapPicker.getValue().toString();
-        if(selected == "CTW") {
-            try {
-                CTW newMap = new CTW( newName.getText(),"giga", newAuthor.getText(), Integer.parseInt(newPlayerCap.getValue().toString()), newRage.isSelected(), newBlitz.isSelected(), teams, timer, Integer.parseInt(optSpinner1.getValue().toString()));
-                MapListController.allMaps.add(newMap);
-                System.out.println(MapListController.allMaps.get(2));
-                addMap(event);
-            } catch (Exception e) {
-                alert.setContentText("Something went wrong. " + e.getMessage());
-                alert.showAndWait();
-            }
-        }
     }
 
     /**
@@ -208,6 +177,97 @@ public class AddMapController implements Initializable {
         SpinnerValueFactory<Integer> pointsFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,4000,2000);
         optSpinner2.setValueFactory(pointsFactory);
         optSpinner2.setVisible(true);
+    }
+
+
+    /**
+     * saves the map
+     */
+    @FXML
+    void saveMap(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+
+        int teams = 0,timer = -1;
+        if(showTeams.isSelected())
+            teams = Integer.parseInt(newTeams.getValue().toString());
+        if(showTimer.isSelected())
+            timer = Integer.parseInt(newTimer.getValue().toString());
+        String selected = mapPicker.getValue().toString();
+        if(selected == "CTW") {
+            try {
+                CTW newMap = new CTW( newName.getText(),"giga", newAuthor.getText(), Integer.parseInt(newPlayerCap.getValue().toString()),
+                        newRage.isSelected(), newBlitz.isSelected(), teams, timer, Integer.parseInt(optSpinner1.getValue().toString()));
+                MapListController.allMaps.add(newMap);
+                addMap(event);
+            } catch (Exception e) {
+                alert.setContentText("Something went wrong. " + e.getMessage());
+                alert.showAndWait();
+            }
+        }
+        if(selected == "DM") {
+            try {
+                DM newMap = new DM( newName.getText(),newPool.getText(), newAuthor.getText(), Integer.parseInt(newPlayerCap.getValue().toString()),
+                        newRage.isSelected(), newBlitz.isSelected(), teams, timer, optCheckBox1.isSelected(),optCheckBox2.isSelected());
+                MapListController.allMaps.add(newMap);
+                addMap(event);
+            } catch (Exception e) {
+                alert.setContentText("Something went wrong. " + e.getMessage());
+                alert.showAndWait();
+            }
+        }
+        if(selected == "DTC") {
+            try {
+                DTC newMap = new DTC( newName.getText(),newPool.getText(), newAuthor.getText(), Integer.parseInt(newPlayerCap.getValue().toString()),
+                        newRage.isSelected(), newBlitz.isSelected(), teams, timer,
+                        Integer.parseInt(optSpinner1.getValue().toString()),optString.getText(),
+                        Integer.parseInt(optSpinner2.getValue().toString()),optCheckBox1.isSelected());
+                MapListController.allMaps.add(newMap);
+                addMap(event);
+            } catch (Exception e) {
+                alert.setContentText("Something went wrong. " + e.getMessage());
+                alert.showAndWait();
+            }
+        }
+        if(selected == "DTM") {
+            try {
+                DTM newMap = new DTM( newName.getText(),newPool.getText(), newAuthor.getText(), Integer.parseInt(newPlayerCap.getValue().toString()),
+                        newRage.isSelected(), newBlitz.isSelected(), teams, timer,
+                        Integer.parseInt(optSpinner1.getValue().toString()),Integer.parseInt(optSpinner2.getValue().toString()),
+                        optCheckBox1.isSelected(),optCheckBox2.isSelected());
+                MapListController.allMaps.add(newMap);
+                addMap(event);
+            } catch (Exception e) {
+                alert.setContentText("Something went wrong. " + e.getMessage());
+                alert.showAndWait();
+            }
+        }
+        if(selected == "KOTH") {
+            try {
+                KOTH newMap = new KOTH( newName.getText(),newPool.getText(), newAuthor.getText(), Integer.parseInt(newPlayerCap.getValue().toString()),
+                        newRage.isSelected(), newBlitz.isSelected(), teams, timer,
+                        Integer.parseInt(optSpinner1.getValue().toString()),Integer.parseInt(optSpinner2.getValue().toString()));
+                MapListController.allMaps.add(newMap);
+                addMap(event);
+            } catch (Exception e) {
+                alert.setContentText("Something went wrong. " + e.getMessage());
+                alert.showAndWait();
+            }
+        }
+    }
+
+    /**
+     * Used to reload the first window
+     * @param event
+     * @throws Exception
+     */
+    @FXML
+    public void addMap(ActionEvent event) throws Exception {
+        Parent mapListParent = FXMLLoader.load(getClass().getResource("../views/mapList.fxml"));
+        Scene mapListScene = new Scene(mapListParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setTitle("Map Creator");
+        window.setScene(mapListScene);
+        window.show();
     }
 
 }

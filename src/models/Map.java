@@ -67,12 +67,12 @@ public class Map {
         String[] pools = {"pico","nano","micro","centi","hecto","mega","giga"};
         int all = 0;
         for (int i = 0; i < pools.length; i++) {
-            if (pool == pools[i])
+            if (pool.equalsIgnoreCase(pools[i]))
                 this.pool = pool;
             else all++;
         }
         if(all == pools.length)
-            throw new IllegalArgumentException("Pool must be either pico, nano, micro, centi, hecto, mega or giga");
+            throw new IllegalArgumentException("Pool must be either pico, nano, micro, centi, hecto, mega or giga. you entered: " + pool);
     }
 
     public String getAuthorUUID() {

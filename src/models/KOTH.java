@@ -6,6 +6,19 @@ public class KOTH extends Map {
     public KOTH() {
     }
 
+    /**
+     * Constructor
+     * @param name
+     * @param pool
+     * @param authorUUID
+     * @param maxPlayers
+     * @param rage
+     * @param blitz
+     * @param teams
+     * @param timer
+     * @param numOfHills
+     * @param maxScore
+     */
     public KOTH(String name, String pool, String authorUUID, int maxPlayers, boolean rage, boolean blitz, int teams, int timer, int numOfHills, int maxScore) {
         super(name, pool, authorUUID, maxPlayers, rage, blitz, teams, timer);
         this.numOfHills = numOfHills;
