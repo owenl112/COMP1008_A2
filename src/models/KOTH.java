@@ -1,3 +1,5 @@
+package models;
+
 public class KOTH extends Map {
     private int numOfHills, maxScore;
 

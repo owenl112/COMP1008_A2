@@ -1,3 +1,5 @@
+package models;
+
 public class DM extends Map {
     private boolean free4All, randomSpawns; // whether it is a free for all and if spawns are random
 
@@ -6,7 +8,7 @@ public class DM extends Map {
     }
 
     /**
-     * Same as the Map but with two booleans for if there are teams or not and if the spawns are random or fixed
+     * Same as the models.Map but with two booleans for if there are teams or not and if the spawns are random or fixed
      * @param name
      * @param pool
      * @param authorUUID

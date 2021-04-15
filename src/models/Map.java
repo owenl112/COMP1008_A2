@@ -1,3 +1,6 @@
+package models;
+
+import java.security.PublicKey;
 import java.util.ArrayList;
 
 public class Map {
@@ -48,7 +51,7 @@ public class Map {
         if(name.length() >= 2){
         this.name = name;
         }
-        else throw new IllegalArgumentException("Map name must be longer than 2 characters");
+        else throw new IllegalArgumentException("models.Map name must be longer than 2 characters");
     }
 
     public String getPool() {
@@ -135,4 +138,5 @@ public class Map {
         }
         else throw new IllegalArgumentException("Timer must be greater than 0");
     }
+
 }

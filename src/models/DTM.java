@@ -1,3 +1,5 @@
+package models;
+
 public class DTM extends Map {
     private int numOfMonuments;
     private int monumentSize;

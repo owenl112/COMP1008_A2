@@ -1,3 +1,5 @@
+package models;
+
 public class DTC extends Map{
     private int numOfCores, leakDown;
     private String coreMaterial;

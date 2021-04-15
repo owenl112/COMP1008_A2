@@ -1,3 +1,5 @@
+package models;
+
 public class CTW extends Map{
     private int numOfWool; // tracks the number of wools across the whole map
 
